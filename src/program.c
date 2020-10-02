@@ -118,7 +118,7 @@ int input_and_calculate(unsigned int* segments, unsigned int array_length_of_seg
 
 int main()
 {
-	unsigned int segments[] = { 5, 10, 20, 100, 500, 1000 };
+	unsigned int segments[] = { 6, 10, 20, 100, 500, 1000 };
 	int array_length_of_segments = (sizeof(segments) / sizeof(segments[0]));
 
 	while (input_and_calculate(segments, array_length_of_segments));
