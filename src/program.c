@@ -56,8 +56,8 @@ char** calculate_and_print(double left_border, double right_border, unsigned int
 
 	for (unsigned int j = 0; j < array_length_of_segments; j++)
 	{
-		double sum = rectangle_method(left_border, right_border, segments[j]);
-		double sum1 = simpsons_rule(left_border, right_border, segments[j]);
+		double sum = calculate_by_rectangle_method(left_border, right_border, segments[j]);
+		double sum1 = calculate_by_simpsons_rule(left_border, right_border, segments[j]);
 		char* result = (char*)malloc(sizeof(char) * RESULT_STRING_LENGTH);
 
 		if (!result)
