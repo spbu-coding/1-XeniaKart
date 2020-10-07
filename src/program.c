@@ -4,7 +4,9 @@
 #include <malloc.h>
 #include <string.h>
 
-double rectangle_method(double left_border, double right_border, unsigned int number_of_segments)
+#define RESULT_STRING_LENGTH 32
+
+double calculate_by_rectangle_method(double left_border, double right_border, unsigned int number_of_segments)
 {
 	double sum = 0;
 	double step = (right_border - left_border) / number_of_segments;
@@ -17,7 +19,7 @@ double rectangle_method(double left_border, double right_border, unsigned int nu
 	return sum;
 }
 
-double simpsons_rule(double left_border, double right_border, unsigned int number_of_segments)
+double calculate_by_simpsons_rule(double left_border, double right_border, unsigned int number_of_segments)
 {
 	double sum = 0;
 	double step = (right_border - left_border) / 2 / number_of_segments;
@@ -31,9 +33,7 @@ double simpsons_rule(double left_border, double right_border, unsigned int numbe
 	return sum;
 }
 
-int result_size = 32;
-
-void dealloc_results(char** results, unsigned int results_count)
+void free_results(char** results, unsigned int results_count)
 {
 	for (unsigned int i = 0; i < results_count; i++)
 	{
@@ -58,11 +58,11 @@ char** calculate_and_print(double left_border, double right_border, unsigned int
 	{
 		double sum = rectangle_method(left_border, right_border, segments[j]);
 		double sum1 = simpsons_rule(left_border, right_border, segments[j]);
-		char* result = (char*)malloc(sizeof(char) * result_size);
+		char* result = (char*)malloc(sizeof(char) * RESULT_STRING_LENGTH);
 
 		if (!result)
 		{
-			dealloc_results(results, array_length_of_segments);
+			free_results(results, array_length_of_segments);
 			return NULL;
 		}
 		results[j] = result;
@@ -99,7 +99,7 @@ int input_and_calculate(unsigned int* segments, unsigned int array_length_of_seg
 			printf("%s\n", results[i]);
 		}
 
-		dealloc_results(results, array_length_of_segments);
+		free_results(results, array_length_of_segments);
 	}
 	else
 	{
